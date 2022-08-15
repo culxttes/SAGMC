@@ -1,0 +1,36 @@
+"use strict";
+
+import { promisify } from "util";
+import pkg from 'glob';
+const { glob } = pkg;
+const PG = promisify(glob);
+import Ascii from "ascii-table";
+
+// @param {Client} client
+export default async (client) => {
+    client.commands = new Map();
+    const Table = new Ascii("Commands Load");
+    for(let file of (await PG(`./Commands/**/*.js`))){ 
+        const command = (await import(`.${file}`)).default;
+
+        if(!command.name){
+            Table.addRow(file.split("/").slice(-1), "[❗️] Erreur", "Missing name");
+            continue;
+        }
+
+        if(!command.description){
+            Table.addRow(command.name, "[❗️] Erreur", "Missing description");
+            continue;
+        }
+
+        if(!command.execute){
+            await Table.addRow(command.name, "[❗️] Erreur", "Missing execute");
+            continue;
+        } 
+        
+        client.commands.set(command.name, file);
+
+        await Table.addRow(command.name, "[✔️] Success");
+    }
+    console.log(Table.toString());
+}
