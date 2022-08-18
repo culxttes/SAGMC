@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
-import { datestring } from "../../Fonctions/datestring.js";
+import { datestring } from "../../Utils/datestring.js";
 
 export default{
     name: "staff",

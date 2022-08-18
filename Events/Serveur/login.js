@@ -1,4 +1,4 @@
-import { datestring } from "../../Fonctions/datestring.js";
+import join from "../../Utils/join.js"
 
 export default{
     name: "login",
@@ -25,16 +25,17 @@ export default{
         }, 180000);
 
         console.log(" --- TRYING CONNECT ON FREECUBE --- ");
-        client.bot.clickWindow(36, 0, 0).catch(err => {});
-        await new Promise(resolve => { client.bot.once('windowOpen', resolve);})
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        client.bot.clickWindow(4, 0, 0).catch(err => {});
-        await new Promise(resolve => { client.bot.once('windowOpen', resolve);})
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        client.bot.clickWindow(11, 0, 0).catch(err => {});
-        await new Promise(resolve => { client.bot.once('join_mod', resolve);})
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        client.bot.chat("/fc tp A303600");
-        console.log(`${datestring()} /fc tp A303600`)
+        join(client, null, "FREECUBEA")
+        //client.bot.clickWindow(36, 0, 0).catch(err => {});
+        //await new Promise(resolve => { client.bot.once('windowOpen', resolve);})
+        //await new Promise(resolve => setTimeout(resolve, 1000));
+        //client.bot.clickWindow(4, 0, 0).catch(err => {});
+        //await new Promise(resolve => { client.bot.once('windowOpen', resolve);})
+        //await new Promise(resolve => setTimeout(resolve, 1000));
+        //client.bot.clickWindow(11, 0, 0).catch(err => {});
+        //await new Promise(resolve => { client.bot.once('join_mod', resolve);})
+        //await new Promise(resolve => setTimeout(resolve, 1000));
+        //client.bot.chat("/fc tp A303600");
+        //console.log(`${datestring()} /fc tp A303600`)
     }
 }

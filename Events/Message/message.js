@@ -1,4 +1,4 @@
-import { datestring } from "../../Fonctions/datestring.js";
+import { datestring } from "../../Utils/datestring.js";
 import { Client } from "../../index.js"
 
 export default {

@@ -5,6 +5,7 @@ import pkg from 'glob';
 const { glob } = pkg;
 const PG = promisify(glob);
 import Ascii from "ascii-table";
+import { statSync } from 'fs';
 
 // @param {Client} client
 export default async (client) => {
@@ -33,4 +34,18 @@ export default async (client) => {
         await Table.addRow(command.name, "[✔️] Success");
     }
     console.log(Table.toString());
+
+    client.bot.on("whisper", async (username, message, translate, jsonMsg) => {
+        if (!message.startsWith("!") || username != "Culottes" ) return;
+        const args = message.split(" ");
+        const command = args.shift().slice(1)
+        const cmd = client.commands.get(command)
+        if(!cmd) return;
+        const stats = statSync(cmd);
+        try {
+            await (await import(`.${cmd}#${stats.mtimeMs}`)).default.execute(args, username, message, client)
+        }catch(err){
+            console.log(err)
+        }  
+    })
 }
