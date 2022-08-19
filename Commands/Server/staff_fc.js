@@ -78,7 +78,7 @@ export default{
                 player[2] = convertMsToTime(Date.now() - date)
                 Staff_co.push(player);
             }
-            await new Promise(resolve => setTimeout(resolve, 900));
+            await new Promise(resolve => setTimeout(resolve, 950));
         }
         return staff.length
         })().then(async (i) => {
@@ -87,11 +87,11 @@ export default{
             }else {
                 console.log(`\x1b[31m` , datestring() + ` ${Staff_co.length} Staff Connecter sur ${i}`, `\x1b[0m`);
                 client.bot.chat(`/m ${username} ${Staff_co.length} Staff Connecter sur ${i}`);
-                await new Promise(resolve => setTimeout(resolve, 900));
+                await new Promise(resolve => setTimeout(resolve, 950));
                 for (let staffco of Staff_co){
                 console.log(`\x1b[31m` , datestring() + ` Le ${staffco[1]} ${staffco[0]} est connecté depuis ${staffco[2]}`, `\x1b[0m`);
                 client.bot.chat(`/m ${username} Le ${staffco[1]} ${staffco[0]} est connecté depuis ${staffco[2]}`)
-                await new Promise(resolve => setTimeout(resolve, 1200));
+                await new Promise(resolve => setTimeout(resolve, 950));
                 }
             }
         });   
