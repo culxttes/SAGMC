@@ -26,7 +26,7 @@ export default{
         }, 180000);
 
         console.log(" --- TRYING CONNECT ON FREECUBE --- ");
-        join(client, null, "FREECUBEA")
+        await join(client, null, "FREECUBEA")
         client.bot.chat("/fc tp A303600");
         console.log(`${datestring()} /fc tp A303600`)
     }
