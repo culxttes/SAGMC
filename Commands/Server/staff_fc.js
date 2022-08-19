@@ -91,7 +91,7 @@ export default{
                 for (let staffco of Staff_co){
                 console.log(`\x1b[31m` , datestring() + ` Le ${staffco[1]} ${staffco[0]} est connecté depuis ${staffco[2]}`, `\x1b[0m`);
                 client.bot.chat(`/m ${username} Le ${staffco[1]} ${staffco[0]} est connecté depuis ${staffco[2]}`)
-                await new Promise(resolve => setTimeout(resolve, 1100));
+                await new Promise(resolve => setTimeout(resolve, 1200));
                 }
             }
         });   
