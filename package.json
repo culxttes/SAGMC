@@ -19,6 +19,7 @@
     "mineflayer-pathfinder": "^2.2.0",
     "node-fetch": "^3.2.10",
     "path": "^0.12.7",
+    "serverline": "^1.6.0",
     "util": "^0.12.4"
   }
 }
