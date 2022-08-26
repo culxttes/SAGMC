@@ -6,7 +6,6 @@ const { pathfinder } = pkg;
 
 import rl from 'serverline'
 
-
 export class Client{
     constructor(){
         this.config = config;

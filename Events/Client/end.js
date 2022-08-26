@@ -8,6 +8,7 @@ export default{
     async execute(reason, client) {
         console.log("END: ", reason)
         await new Promise(resolve => setTimeout(resolve, 10000));
+        client.bot.removeAllEventListener()
         clearInterval(client.bot?.anti_afk);
         new Client().execute();
     }
