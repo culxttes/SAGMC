@@ -16,5 +16,8 @@ export default {
         if (message.toString().startsWith("[File d'attente] Vous rejoignez ")){
             client.bot.emit('join_mod', (message.toString().slice(("[File d'attente] Vous rejoignez ").length)));
         }
+        if (message.toString() === "Le serveur a été stoppé."){
+            client.bot.emit("server_restart")
+        }
     }
 }

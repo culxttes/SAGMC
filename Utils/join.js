@@ -43,13 +43,14 @@ export default async (client, username, game_name) => {
         }
     }
     if (window?.id != undefined && window.id != 0){
-        client.bot.closeWindow(window)
+        await client.bot.closeWindow(window)
     }
     if (!error){
         await new Promise(resolve => { client.bot.once('join_mod', () => {
             setTimeout(resolve, 1000)
         });})
-        console.log(`\x1b[36m --- I am connected to ${game_name}  --- \x1b[0m`)
-        if (username) client.bot.chat(`/m ${username} I am connected to ${game_name}`)
+        await console.log(`\x1b[36m --- I am connected to ${game_name}  --- \x1b[0m`)
+        if (username) await client.bot.chat(`/m ${username} I am connected to ${game_name}`)
     }
+    return !error;
 }
