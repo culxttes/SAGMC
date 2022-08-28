@@ -1,4 +1,5 @@
 import { datestring } from "../../Utils/datestring.js";
+import { statSync } from "fs";
 
 export default{
     name: "server_restart",
@@ -7,9 +8,9 @@ export default{
     async execute(client) {
         let success;
         do {
-            await new Promise(resolve => {setTimeout(resolve, 90000)});
+            await new Promise(resolve => {setTimeout(resolve, 30000)});
             const stats = statSync("./Utils/join.js");
-            success = (await import(`../../Utils/join.js#${stats.mtimeMs}`)).default(client, null, "FREECUBEA");
+            success = await (await import(`../../Utils/join.js#${stats.mtimeMs}`)).default(client, null, "FREECUBEA");
         } while (!success)
 
         client.bot.chat("/fc tp A303600");
