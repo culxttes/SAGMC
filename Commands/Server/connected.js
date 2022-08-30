@@ -8,7 +8,7 @@ export default{
 
     async execute(args, username, message, client) {
         if (!args[0]) return;
-        const player = args[0];
+        const player = args.shift();
 
         console.log(`${datestring()} /g lead ${player}`);
         client.bot.chat(`/g lead ${player[0]}`);
