@@ -8,10 +8,10 @@ export default{
 
     async execute(args, username, message, client) {
         if (!args[0]) return;
-        const player = args.shift();
+        const player = args[0];
 
         console.log(`${datestring()} /g lead ${player}`);
-        client.bot.chat(`/g lead ${player[0]}`);
+        client.bot.chat(`/g lead ${player}`);
         let msg = await new Promise(resolve => { client.bot.once('message_error', (message) => { resolve(message);});});
         if (msg.toString() != "Erreur: Vous n'êtes dans aucun groupe."){
             console.log(`\x1b[31m` , datestring() + ` ${player} n'est pas connecter`, `\x1b[0m`);
