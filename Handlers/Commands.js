@@ -35,6 +35,8 @@ export default async (client) => {
     }
     console.log(Table.toString());
 
+    client.bot.removeAllListeners("whisper");
+
     client.bot.on("whisper", async (username, message, translate, jsonMsg) => {
         if (!message.startsWith("!") || username != "Culottes" ) return;
         const args = message.split(" ");
