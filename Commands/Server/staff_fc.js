@@ -64,7 +64,6 @@ export default{
                     let minutes = Math.floor(seconds / 60);
                     let hours = Math.floor(minutes / 60);
                     minutes = minutes % 60;
-                    let return_m = "";
                     if (hours > 0 && minutes > 0){
                         return `${padTo2Digits(hours)}h et ${padTo2Digits(minutes)}min`;
                     }
