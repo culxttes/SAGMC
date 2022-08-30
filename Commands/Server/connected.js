@@ -12,8 +12,8 @@ export default{
 
         console.log(`${datestring()} /g lead ${player}`);
         client.bot.chat(`/g lead ${player[0]}`);
-        let message = await new Promise(resolve => { client.bot.once('message_error', (message) => { resolve(message);});});
-        if (message.toString() != "Erreur: Vous n'êtes dans aucun groupe."){
+        let msg = await new Promise(resolve => { client.bot.once('message_error', (message) => { resolve(message);});});
+        if (msg.toString() != "Erreur: Vous n'êtes dans aucun groupe."){
             console.log(`\x1b[31m` , datestring() + ` ${player} n'est pas connecter`, `\x1b[0m`);
             client.bot.chat(`/m ${username} ${player} n'est pas connecter`)
             return;

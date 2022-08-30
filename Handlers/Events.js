@@ -25,7 +25,7 @@ export default async (client) => {
         }
 
         if(!event.execute){
-            await Table.addRow(command.name, "[❗️] Erreur", "Missing execute");
+            await Table.addRow(event.name, "[❗️] Erreur", "Missing execute");
             continue;
         } 
 
