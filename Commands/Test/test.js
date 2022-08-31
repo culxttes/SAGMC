@@ -15,6 +15,6 @@ export default{
         client.testcmd = (packet) => {
             console.log(packet)
         }
-        client.bot._client.once('player_info', client.testcmd)
+        client.bot._client.on('player_info', client.testcmd)
     }
 }
