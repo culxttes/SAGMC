@@ -8,7 +8,7 @@ export default{
     * @param {Client} client
     */
     async execute(args, username, message, client) {
-        bot._client.once('player_info', (packet) => {
+        client.bot._client.once('player_info', (packet) => {
             console.log(packet)
         })
     }
