@@ -12,6 +12,5 @@ export default{
             console.log(packet)
             console.log(packet.data[0].name)
         })
-        client.bot._client.removeAllListeners("tab_complete")
     }
 }
