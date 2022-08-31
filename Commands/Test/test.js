@@ -1,11 +1,15 @@
+import { Client } from '../../index.js'
+
 export default{
     name: "test",
     description: "test",
 
+    /**
+    * @param {Client} client
+    */
     async execute(args, username, message, client) {
-        for (player of client.bot.players){
-            console.log(player.name)
-            console.log(player.displayName)
-        }
+        bot._client.once('player_info', (packet) => {
+            console.log(packet)
+        })
     }
 }
