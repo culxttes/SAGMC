@@ -87,5 +87,6 @@ export const Events = [
     "bossBarDeleted",
     "bossBarUpdated",
     "resourcePack",
+    "player_info",
     "server_restart"
 ]

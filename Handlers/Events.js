@@ -27,13 +27,20 @@ export default async (client) => {
         if(!event.execute){
             await Table.addRow(event.name, "[❗️] Erreur", "Missing execute");
             continue;
-        } 
-
-        if(event.once) {
-            client.bot.once(event.name, (...args) => event.execute(...args, client));
-        } else { 
-            client.bot.on(event.name, (...args) => event.execute(...args, client));
-        };
+        }
+        if (event.hideEvent){
+            if(event.once) {
+                client.bot._client.once(event.name, (...args) => event.execute(...args, client));
+            } else { 
+                client.bot._client.on(event.name, (...args) => event.execute(...args, client));
+            };
+        }else {
+            if(event.once) {
+                client.bot.once(event.name, (...args) => event.execute(...args, client));
+            } else { 
+                client.bot.on(event.name, (...args) => event.execute(...args, client));
+            };
+        }
 
         await Table.addRow(event.name, "[✔️] Success");
     }
