@@ -36,7 +36,7 @@ export default{
 
         for (const player of players){
             try {
-                const res = await (await fetch(`https://api.mojang.com/user/profiles/${player[0].replaceAll("-","")}/names`)).json()
+                const res = await (await fetch(`https://sessionserver.mojang.com/session/minecraft/profile/${player[0].replaceAll("-","")}`)).json()
                 console.log(`Name Mojang API: ${res.pop().name}`)
             }catch(err){
                 console.log("This player is crack")
