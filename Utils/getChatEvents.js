@@ -61,7 +61,9 @@ export function getChatEvents(jsonMsg) {
 
                 // Known actions
                 if (hEvent["action"] === "show_text") {
-                    hoverEvents.push(hEvent["value"]["text"].replace(/§[a-z0-9]/g, ""));
+                    hEvent["value"].forEach(value => {
+                        hoverEvents.push(value["text"].replace(/§[a-z0-9]/g, ""));
+                    })
                 }
                 // If its a new action (yay!)
                 else {

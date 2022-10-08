@@ -10,8 +10,11 @@ export default {
     * @param {Client} client
     */
     async execute(message, position , client) {
-        console.log(datestring() + " " +message.toAnsi())
-        getChatEvents(message);
+        let [messageClickEvents, messageHoverEvents] = getChatEvents(message);
+        if (!messageClickEvents.length) messageClickEvents = "";
+        if (!messageClickEvents.length) messageHoverEvents = "";
+        console.log(datestring() + " " +message.toAnsi(), messageClickEvents, messageHoverEvents)
+
         if (message.toString().startsWith("Erreur:")){
             client.bot.emit("message_error", message);
             return;
