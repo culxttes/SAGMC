@@ -1,5 +1,6 @@
 import { datestring } from "../../Utils/datestring.js";
 import { Client } from "../../index.js"
+import { getChatEvents } from "../../Utils/getChatEvents.js";
 
 export default {
     name: "message",
@@ -10,6 +11,7 @@ export default {
     */
     async execute(message, position , client) {
         console.log(datestring() + " " +message.toAnsi())
+        getChatEvents(message);
         if (message.toString().startsWith("Erreur:")){
             client.bot.emit("message_error", message);
             return;
