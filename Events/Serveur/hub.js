@@ -2,7 +2,7 @@ import { datestring } from "../../Utils/datestring.js";
 import { statSync } from "fs";
 
 export default{
-    name: "server_restart",
+    name: "hub",
     once: false,
 
     async execute(client) {

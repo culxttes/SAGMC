@@ -18,8 +18,8 @@ export default {
             client.bot.emit('join_mod', (message.toString().slice(("[File d'attente] Vous rejoignez ").length)));
             return;
         }
-        if (message.toString() === "Le serveur a été stoppé."){
-            client.bot.emit("server_restart");
+        if (message.toString().startsWith("Tentative de triche !") || message.toString() === "Le serveur a été stoppé."){
+            client.bot.emit("hub");
             return;
         }
     }
