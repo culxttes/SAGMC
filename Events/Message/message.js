@@ -9,21 +9,21 @@ export default {
     * 
     * @param {Client} client
     */
-    async execute(message, position , client) {
-        let [messageClickEvents, messageHoverEvents] = getChatEvents(message);
+    async execute(jsonMsg, position, sender, verified, client) {
+        let [messageClickEvents, messageHoverEvents] = getChatEvents(jsonMsg);
         if (!messageClickEvents.length) messageClickEvents = "";
         if (!messageClickEvents.length) messageHoverEvents = "";
-        console.log(datestring() + " " +message.toAnsi(), messageClickEvents, messageHoverEvents)
+        console.log(datestring() + " " +jsonMsg.toAnsi(), messageClickEvents, messageHoverEvents)
 
-        if (message.toString().startsWith("Erreur:")){
-            client.bot.emit("message_error", message);
+        if (jsonMsg.toString().startsWith("Erreur:")){
+            client.bot.emit("message_error", jsonMsg);
             return;
         }
-        if (message.toString().startsWith("[File d'attente] Vous rejoignez ")){
-            client.bot.emit('join_mod', (message.toString().slice(("[File d'attente] Vous rejoignez ").length)));
+        if (jsonMsg.toString().startsWith("[File d'attente] Vous rejoignez ")){
+            client.bot.emit('join_mod', (jsonMsg.toString().slice(("[File d'attente] Vous rejoignez ").length)));
             return;
         }
-        if (message.toString().includes("--- [FunSecurity") || message.toString() === "Le serveur a été stoppé."){
+        if (jsonMsg.toString().includes("--- [FunSecurity") || jsonMsg.toString() === "Le serveur a été stoppé."){
             client.bot.emit("hub");
             return;
         }

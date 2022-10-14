@@ -5,7 +5,7 @@ export default{
     once: false,
     hideEvent: true,
 
-    async execute(packet, client) {
+    async execute(packet, packetMeta, client) {
         if (packet.action !== 0) return
         const file = await readFileSync("./Data/Players/name.json")
         let DB = JSON.parse(file)
