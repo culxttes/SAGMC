@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-import { Window } from 'mineflayer';
 
 export default async (client, username, game_name) => {
     const map_game = JSON.parse(readFileSync("./Configuration/MappingGame.json"))[game_name]
