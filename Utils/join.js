@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { Window } from 'mineflayer';
 
 export default async (client, username, game_name) => {
     const map_game = JSON.parse(readFileSync("./Configuration/MappingGame.json"))[game_name]
@@ -42,7 +43,7 @@ export default async (client, username, game_name) => {
             await new Promise(resolve => {setTimeout(resolve, 1000)})
         }
     }
-    if (window instanceof Window){
+    if (window != client.bot.window){
         window.close();
     }
     if (!error){
