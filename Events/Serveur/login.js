@@ -26,6 +26,7 @@ export default{
         }, 180000);
 
         console.log(" --- TRYING CONNECT ON FREECUBE --- ");
+        let success;
         do {
             await new Promise(resolve => {setTimeout(resolve, 10000)});
             const stats = statSync("./Utils/join.js");
