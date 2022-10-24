@@ -43,7 +43,7 @@ export default async (client, username, game_name) => {
         }
     }
     try {
-        await client.bot.closeWindow(window)
+        await window.close()
     }catch(err){}
     if (!error){
         await new Promise(resolve => { client.bot.once('join_mod', () => {
