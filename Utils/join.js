@@ -42,9 +42,9 @@ export default async (client, username, game_name) => {
             await new Promise(resolve => {setTimeout(resolve, 1000)})
         }
     }
-    try {
-        await window.close()
-    }catch(err){}
+    if (window?.id != undefined && window.id != 0){
+        await window.close();
+    }
     if (!error){
         await new Promise(resolve => { client.bot.once('join_mod', () => {
             setTimeout(resolve, 1000)
