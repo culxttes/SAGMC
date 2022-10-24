@@ -1,4 +1,4 @@
-import join from "../../Utils/join.js"
+import { statSync } from "fs";
 import { datestring } from "../../Utils/datestring.js";
 
 export default{
@@ -26,7 +26,11 @@ export default{
         }, 180000);
 
         console.log(" --- TRYING CONNECT ON FREECUBE --- ");
-        await join(client, null, "FREECUBEA")
+        do {
+            await new Promise(resolve => {setTimeout(resolve, 10000)});
+            const stats = statSync("./Utils/join.js");
+            success = await (await import(`../../Utils/join.js#${stats.mtimeMs}`)).default(client, null, "FREECUBEA");
+        } while (!success)
         client.bot.chat("/fc tp A303600");
         console.log(`${datestring()} /fc tp A303600`)
     }
