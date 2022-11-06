@@ -14,12 +14,14 @@ export default{
         await new Promise(resolve => { client.bot.once('message', () => {resolve()})})
         client.bot.anti_afk = setInterval(async () => {
             client.bot.setControlState('forward', true);
+            console.log(" --- ANTI AFK (forward) --- ");
             await new Promise(r => setTimeout(r, 1000));
             client.bot.setControlState('forward', false);
             client.bot.setControlState('back', true);
+            console.log(" --- ANTI AFK (back) --- ");
             await new Promise(r => setTimeout(r, 1000));
             client.bot.setControlState('back', false);
-        }, 90000)
+        }, 180000)
 
         console.log(" --- TRYING CONNECT ON FREECUBE --- ");
         let success;
