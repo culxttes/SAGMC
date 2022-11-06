@@ -44,11 +44,9 @@ export default async (client, username, game_name) => {
     if (!error){
         const join = await new Promise(resolve => { 
             client.bot.once('join_mod', () => {
-                setTimeout(() => {
-                    resolve(true)
-                }, 1000);
+                resolve(true)
             });
-            setTimeout(resolve(false), 30000);
+            setTimeout(resolve, 60000, false);
         })
         if (!join) return join;
         await console.log(`\x1b[36m --- I am connected to ${game_name}  --- \x1b[0m`);
