@@ -9,17 +9,15 @@ export default async (client, username, game_name) => {
         return;
     }
 
-    await new Promise(resolve => { client.bot.once('message', () => {resolve()})})
-
-    let window = client.bot.inventory
-    let error = false
+    let window = client.bot.currentWindow || client.bot.inventory;
+    let error = false;
     for (const item_info of map_game){
-        console.log(`\x1b[36m --- Search for the item: "${item_info.name}" --- \x1b[0m`)
-        const slot = window.slots.find(item => item?.nbt.value.display.value.Name.value.includes(item_info.name))?.slot
+        console.log(`\x1b[36m --- Search for the item: "${item_info.name}" --- \x1b[0m`);
+        const slot = window.slots.find(item => item?.nbt.value.display.value.Name.value.includes(item_info.name))?.slot;
         if (slot === undefined){
-            console.log(`\x1b[36m --- I could not find the item: "${item_info.name}" --- \x1b[0m`)
-            if (username) client.bot.chat(`/m ${username} I could not find the item: "${item_info.name}"`)
-            error = true
+            console.log(`\x1b[36m --- I could not find the item: "${item_info.name}" --- \x1b[0m`);
+            if (username) client.bot.chat(`/m ${username} I could not find the item: "${item_info.name}"`);
+            error = true;
             break;
         }
         client.bot.clickWindow(slot, 0, 0).catch(err => {});
@@ -27,27 +25,32 @@ export default async (client, username, game_name) => {
             window = await new Promise(resolve => {
                 client.bot.once('windowOpen', (window) => {
                     setTimeout(() => {
-                        resolve(window)
+                        resolve(window);
                     }, 1000)
                 })
-                setTimeout(resolve, 3000)
+                setTimeout(resolve, 3000);
             })
             if (!window) {
-                console.log("\x1b[36m --- I couldn't open the window --- \x1b[0m")
-                if (username) client.bot.chat(`/m ${username} I couldn't open the window`)
-                error = true
+                console.log("\x1b[36m --- I couldn't open the window --- \x1b[0m");
+                if (username) client.bot.chat(`/m ${username} I couldn't open the window`);
+                error = true;
                 break;
             }
         }else if (map_game.indexOf(item_info) !== (map_game.length - 1)){
-            await new Promise(resolve => {setTimeout(resolve, 1000)})
+            await new Promise(resolve => {setTimeout(resolve, 1000)});
         }
     }
+    client.bot.closeWindow(client.bot.currentWindow || client.bot.inventory);
     if (!error){
-        await new Promise(resolve => { client.bot.once('join_mod', () => {
-            setTimeout(resolve, 1000)
-        });})
-        await console.log(`\x1b[36m --- I am connected to ${game_name}  --- \x1b[0m`)
-        if (username) await client.bot.chat(`/m ${username} I am connected to ${game_name}`)
+        const join = await new Promise(resolve => { 
+            client.bot.once('join_mod', () => {
+                setTimeout(resolve(true), 1000);
+            });
+            setTimeout(resolve(false), 30000);
+        })
+        if (!join) return join;
+        await console.log(`\x1b[36m --- I am connected to ${game_name}  --- \x1b[0m`);
+        if (username) await client.bot.chat(`/m ${username} I am connected to ${game_name}`);
     }
     return !error;
 }
