@@ -42,7 +42,6 @@ export default async (client, username, game_name) => {
         }
     }
     if (window != client.bot.inventory) {
-        console.log(window)
         window.close()
     }
     const join = await new Promise(resolve => { 
