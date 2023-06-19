@@ -1,4 +1,4 @@
-"use strick";
+"use strict";
 import mineflayer from 'mineflayer';
 import config from './Configuration/CreateBot.json' assert {type: 'json'};
 import pkg from 'mineflayer-pathfinder';
