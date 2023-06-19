@@ -13,7 +13,8 @@ export class Client{
             host: config.host,
             username: config.username,
             password: config.password,
-            auth: config.auth
+            auth: config.auth,
+            checkTimeoutInterval: 100000
         })
         this.bot.loadPlugin(pathfinder)
         
