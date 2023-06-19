@@ -27,7 +27,7 @@ export default async (client, username, game_name) => {
         if (item_info.openWindow){
             const window_tmp = await new Promise(resolve => {
                 client.bot.once('windowOpen', (window) => setTimeout(resolve, 1000, window))
-                setTimeout(resolve, 3000);
+                setTimeout(resolve, 3000, undefined);
             })
             if (!window_tmp) {
                 display_message(client, username, ` --- I couldn't open the window --- `);
@@ -40,6 +40,9 @@ export default async (client, username, game_name) => {
         }else if (map_game.indexOf(item_info) !== (map_game.length - 1)){
             await new Promise(resolve => {setTimeout(resolve, 1000)});
         }
+    }
+    if (window != client.bot.inventory) {
+        window.close()
     }
     const join = await new Promise(resolve => { 
         client.bot.once('join_mod', () => setTimeout(resolve, 1000, true));
