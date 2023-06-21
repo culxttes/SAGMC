@@ -9,6 +9,9 @@ export default{
     async execute(args, username, message, client) {
         const mcData = funcmcData(client.bot.version);
         const defaultMove = new Movements(client.bot, mcData)
+        defaultMove.canOpenDoors = false;
+        defaultMove.canDig = false;
+        
         const target = client.bot.players[username]?.entity
         if (!target) {
             client.bot.chat("/r I don't see you")

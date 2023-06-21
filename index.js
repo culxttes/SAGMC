@@ -6,6 +6,8 @@ const { pathfinder } = pkg;
 
 import rl from 'serverline'
 
+process.setMaxListeners(0);
+
 export class Client{
     constructor(){
         this.config = config;
