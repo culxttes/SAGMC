@@ -19,7 +19,10 @@ export default async (client, username, game_name) => {
         if (slot === undefined){
             display_message(client, username, ` --- I could not find the item: "${item_info.name}" --- `);
             if (window != client.bot.inventory) {
-                client.bot.currentWindow = null
+                client.bot._client.write('close_window', {
+                    windowId: window.id
+                })
+                client.bot.currentWindow = null;
             }
             return false;
         }
@@ -32,17 +35,23 @@ export default async (client, username, game_name) => {
             if (!window_tmp) {
                 display_message(client, username, ` --- I couldn't open the window --- `);
                 if (window != client.bot.inventory) {
-                    client.bot.currentWindow = null
+                    client.bot._client.write('close_window', {
+                        windowId: window.id
+                    })
+                    client.bot.currentWindow = null;
                 }
                 return false;
             }
             window = window_tmp;
-        }else {
+        } else if (map_game.indexOf(item_info) == map_game.length - 1) {
             await new Promise(r => setTimeout(r, 1000));
         }
     }
     if (window != client.bot.inventory) {
-        client.bot.currentWindow = null
+        client.bot._client.write('close_window', {
+            windowId: window.id
+        })
+        client.bot.currentWindow = null;
     }
     const join = await new Promise(resolve => { 
         client.bot.once('join_mod', () => setTimeout(resolve, 1000, true));
