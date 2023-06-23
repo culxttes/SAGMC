@@ -43,7 +43,7 @@ export default async (client, username, game_name) => {
                 return false;
             }
             window = window_tmp;
-        } else if (map_game.indexOf(item_info) == map_game.length - 1) {
+        } else if (map_game.indexOf(item_info) != map_game.length - 1) {
             await new Promise(r => setTimeout(r, 1000));
         }
     }
