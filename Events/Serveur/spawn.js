@@ -20,8 +20,6 @@ export default{
     once: false,
 
     async execute(client) {
-        const ChatMessage = pkg(client.bot.version);
-
         // mineflayerViewer(bot, { port: 3007, firstPerson: true }) // port is the minecraft server port, if first person is false, you get a bird's-eye view
 
         await new Promise(resolve => client.bot.once('message', resolve))
