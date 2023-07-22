@@ -4,15 +4,8 @@ import { datestring } from "../../Utils/datestring.js";
 
 function is_fc_hub(client, scoreboard) {
     const ChatMessage = pkg(client.bot.version);
-    const len = scoreboard.items.length
-    const value = ['', '   www.funcraft.net', 'Boutique et Forum sur', '']
-    for (let i = 0; i < 4; ++i) {
-        const item = new ChatMessage(scoreboard.items[len - i - 1].name).toString()
-        if (item != value[i]) {
-            return false;
-        }
-    }
-    return true
+    const item = new ChatMessage(scoreboard.items[3].name).toString() 
+    return item.incudes("Lobby");
 }
 
 export default{
