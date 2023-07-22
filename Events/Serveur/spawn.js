@@ -5,7 +5,7 @@ import { datestring } from "../../Utils/datestring.js";
 function is_fc_hub(client, scoreboard) {
     const ChatMessage = pkg(client.bot.version);
     const item = new ChatMessage(scoreboard.items[3].name).toString() 
-    return item.incudes("Lobby");
+    return item.includes("Lobby:");
 }
 
 export default{
