@@ -1,0 +1,14 @@
+{
+    "FREECUBEA": [
+        {
+            "name": "Menu principal",
+            "openWindow": true,
+            "quickBar": true
+        },
+        {
+            "name": "Freecube",
+            "openWindow": false,
+            "quickBar": false
+        }
+    ]
+}

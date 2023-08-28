@@ -1,0 +1,35 @@
+import pkg from 'prismarine-chat';
+import { statSync } from "fs";
+import { datestring } from "../../Utils/datestring.js";
+
+function is_fc_hub(client, scoreboard) {
+    const ChatMessage = pkg(client.bot.version);
+    const item = new ChatMessage(scoreboard.items[1].name).toString();
+    return item.includes("PROFIL");
+}
+
+export default{
+    name: "spawn",
+    once: false,
+    log: false,
+
+    async execute(client) {
+        await new Promise(resolve => client.bot.once('message', resolve))
+        if (!is_fc_hub(client, client.bot.scoreboard.sidebar)) {
+            return;
+        }
+        console.log(' --- THE BOT IS IN THE SERVER HUB --- ');
+        await new Promise(r => setTimeout(r, 30000));
+        console.log(" --- TRYING CONNECT ON FREECUBE --- ");
+        let success;
+        do {
+            await new Promise(resolve => {setTimeout(resolve, 10000)});
+            const stats = statSync("./Utils/join.js");
+            success = await (await import(`../../Utils/join.js#${stats.mtimeMs}`)).default(client, null, "FREECUBEA");
+        } while (!success)
+        await new Promise(r => setTimeout(r, 3000));
+        client.bot.chat("/fc tp Culottes 1");
+        console.log(`${datestring()} /fc tp Culottes 1`)
+    }
+
+}
