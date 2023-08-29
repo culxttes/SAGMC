@@ -5,8 +5,7 @@
     "auth": "microsoft",
     "regex": {
         "name": "whisper",
-        "regex": "^\\S{0,2}\\[[^ :]* ([^ :]*) -> Me?]\\[R] (.*)$",
-        "host": "127.0.0.1"
+        "regex": "^\\S{0,2}\\[[^ :]* ([^ :]*) -> Me?]\\[R] (.*)$"
     },
     "database": {
         "host": "localhost",

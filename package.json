@@ -1,28 +1,21 @@
 {
   "name": "sagmc",
   "version": "1.1.0",
-  "description": "",
+  "description": "Minecraft bot for the Derycube server, (fork of the initial project which was on Funcraft)",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "author": "Lurgrid",
   "license": "SEE LICENCE IN \"LICENCE\"",
   "dependencies": {
     "ascii-table": "^0.0.9",
-    "bluebird": "^3.7.2",
-    "fs": "^0.0.1-security",
     "glob": "^8.0.3",
-    "jsdom": "^20.0.0",
     "minecraft-data": "^3.9.1",
     "mineflayer": "^4.5.0",
     "mineflayer-pathfinder": "^2.2.0",
-    "mysql2": "^3.6.0",
-    "node-fetch": "^3.2.10",
-    "path": "^0.12.7",
-    "serverline": "^1.6.0",
-    "util": "^0.12.4"
+    "mysql2": "^3.6.0"
   },
   "devDependencies": {
     "@types/node": "^18.17.12"

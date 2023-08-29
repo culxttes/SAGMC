@@ -5,11 +5,15 @@ import pkg from 'mineflayer-pathfinder';
 import mysql from 'mysql2/promise'
 const { pathfinder } = pkg;
 
-import rl from 'serverline'
-
 process.setMaxListeners(0);
 
+/**
+ * Object representing the bot's client
+ */
 export class Client{
+    /**
+     * @param {mysql.Client} mysql
+     */
     constructor(mysql){
         this.config = config;
         this.bot = mineflayer.createBot({
@@ -22,21 +26,16 @@ export class Client{
             defaultChatPatterns: false
         });
         this.bot.loadPlugin(pathfinder);
-        
-        this.rl = rl;
-        this.rl.init();
         this.commands = new Map();
-        process.stdout.write('\x1Bc');
         this.db = mysql;
     }
 
+    /**
+     * Run the handlers
+     */
     async execute (){
         (await import("./Handlers/Commands.js")).default(this);
         (await import("./Handlers/Events.js")).default(this);
-
-        this.rl.on('line', string => {
-            this.bot.chat(string)
-        })
     }
 };
 const connection = await mysql.createConnection(config.database);

@@ -1,17 +1,18 @@
 "use strict";
-
+import { Client } from "../index.js";
 import { Events } from "../Validation/EventNames.js";
-import { promisify } from "util";
-import pkg from 'glob';
-const { glob } = pkg;
-const PG = promisify(glob);
+import { GlobSync } from 'glob';
 import Ascii from "ascii-table";
+import { Client } from '../index.js';
 
-// @param {Client} client
+/**
+ * Initializes and processes events
+ * @param {Client} client
+ */
 export default async (client) => {
     const Table = new Ascii("Events Load");
     
-    for(let file of (await PG(`./Events/**/*.js`))){ 
+    for(let file of (await GlobSync(`./Events/**/*.js`))){ 
         const event = (await import(`.${file}`)).default;
         const L = file.split("/").slice(-2).join('/');
         if (!event){

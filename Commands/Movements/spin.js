@@ -1,7 +1,17 @@
+"use strict";
+import { Client } from '../../index.js'
+
 export default{
     name: "spin",
-    description: "Le bot tourne",
+    description: "Turns the bot on itself",
 
+    /**
+     * 
+     * @param {string[]} args 
+     * @param {string} username 
+     * @param {string} message 
+     * @param {Client} client 
+     */
     async execute(args, username, message, client) {
         if (args[0]?.toLowerCase() === 'stop') {
             clearInterval(client.bot.spin);

@@ -1,3 +1,8 @@
+"use strict";
+
+/**
+ * Table containing all possible supported events
+ */
 export const Events = [
     "chat",
     "whisper",

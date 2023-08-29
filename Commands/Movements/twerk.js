@@ -1,7 +1,17 @@
+"use strict";
+import { Client } from '../../index.js'
+
 export default{
     name: "twerk",
-    description: "Force the client.bot to do a twerk",
-
+    description: "Force the bot to do a twerk",
+    
+    /**
+     * 
+     * @param {string[]} args 
+     * @param {string} username 
+     * @param {string} message 
+     * @param {Client} client 
+     */
     async execute(args, username, message, client) {
         if (!client.bot.twerk && args[0] == "stop") return;
         if (args[0] == "stop"){

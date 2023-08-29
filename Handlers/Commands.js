@@ -1,17 +1,17 @@
 "use strict";
-
-import { promisify } from "util";
-import pkg from 'glob';
-const { glob } = pkg;
-const PG = promisify(glob);
+import { GlobSync } from 'glob';
 import Ascii from "ascii-table";
 import { statSync } from 'fs';
+import { Client } from '../index.js';
 
-// @param {Client} client
+/**
+ * Initializes and processes commands
+ * @param {Client} client
+ */
 export default async (client) => {
     client.commands = new Map();
     const Table = new Ascii("Commands Load");
-    for(let file of (await PG(`./Commands/**/*.js`))){ 
+    for(let file of (await GlobSync(`./Commands/**/*.js`))){ 
         const command = (await import(`.${file}`)).default;
 
         if(!command.name){

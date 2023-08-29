@@ -1,8 +1,17 @@
+"use strict";
 import pkg from 'prismarine-chat';
 import { statSync } from "fs";
 import { datestring } from "../../Utils/datestring.js";
+import { Client } from '../../index.js';
+import { ScoreBoard } from 'mineflayer';
 
-function is_fc_hub(client, scoreboard) {
+/**
+ * Returns true if the bot is at the server hub, false otherwise.
+ * @param {Client} client 
+ * @param {ScoreBoard} scoreboard 
+ * @returns 
+ */
+function is_in_hub(client, scoreboard) {
     const ChatMessage = pkg(client.bot.version);
     const item = new ChatMessage(scoreboard.items[1].name).toString();
     return item.includes("PROFIL");
@@ -11,11 +20,15 @@ function is_fc_hub(client, scoreboard) {
 export default{
     name: "spawn",
     once: false,
-    log: false,
 
+    /**
+     * Emitted once after you log in and spawn for the first time and then 
+     * emitted when you respawn after death.
+     * @param {Client} client 
+     */
     async execute(client) {
         await new Promise(resolve => client.bot.once('message', resolve))
-        if (!is_fc_hub(client, client.bot.scoreboard.sidebar)) {
+        if (!is_in_hub(client, client.bot.scoreboard.sidebar)) {
             return;
         }
         console.log(' --- THE BOT IS IN THE SERVER HUB --- ');

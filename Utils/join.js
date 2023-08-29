@@ -1,10 +1,27 @@
+"use strict";
+import { Client } from '../index.js';
 import { readFileSync } from 'fs';
 
+/**
+ * Writes a message containing msg to the console and as a private message if 
+ * username is defined 
+ * @param {Client} client
+ * @param {string} username
+ * @param {string} msg
+ */
 function display_message(client, username, msg) {
     console.log("\x1b[36m " + msg + " \x1b[0m");
     if (username) client.bot.chat(`/m ${username} ` + msg);
 }
 
+/**
+ * Connects the bot in the game mode, chooses game_name and warns the player, 
+ * username if defined, returns false if unsuccessful, true otherwise.
+ * @async
+ * @param {Client} client
+ * @param {string} username
+ * @param {string} game_name
+ */
 export default async (client, username, game_name) => {
     const map_game = JSON.parse(readFileSync("./Configuration/MappingGame.json"))[game_name];
 

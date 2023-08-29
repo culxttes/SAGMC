@@ -1,3 +1,4 @@
+"use strict";
 import { readFileSync } from 'fs'
 import { Client } from '../../index.js'
 import fetch from "node-fetch";
@@ -7,8 +8,12 @@ export default{
     description: "info",
 
     /**
-    * @param {Client} client
-    */
+     * 
+     * @param {string[]} args 
+     * @param {string} username 
+     * @param {string} message 
+     * @param {Client} client 
+     */
     async execute(args, username, message, client) {
         if (!args[0]) return
         const file = await readFileSync("./Data/Players/name.json")

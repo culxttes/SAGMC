@@ -1,7 +1,17 @@
+"use strict";
+import { Client } from '../../index.js'
+
 export default{
     name: "force",
-    description: "Force the client.bot to do something",
+    description: "Force the bot to do something",
 
+    /**
+     * 
+     * @param {string[]} args 
+     * @param {string} username 
+     * @param {string} message 
+     * @param {Client} client 
+     */
     async execute(args, username, message, client) {
         switch (args[0]) {
             case 'avance':

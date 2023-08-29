@@ -1,10 +1,19 @@
+"use strict";
 import { statSync } from "fs";
 import { datestring } from "../../Utils/datestring.js";
+import { Client } from '../../index.js'
 
 export default{
     name: "join",
-    description: "Join a mod",
+    description: "Join a mini-games",
 
+    /**
+     * 
+     * @param {string[]} args 
+     * @param {string} username 
+     * @param {string} message 
+     * @param {Client} client 
+     */
     async execute(args, username, message, client) {
         client.bot.chat("/hub")
         console.log(`${datestring()} /hub`)
