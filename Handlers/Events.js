@@ -1,9 +1,8 @@
 "use strict";
 import { Client } from "../index.js";
 import { Events } from "../Validation/EventNames.js";
-import { GlobSync } from 'glob';
-import Ascii from "ascii-table";
-import { Client } from '../index.js';
+import { glob } from 'glob';
+import Ascii from "ascii-table";;
 
 /**
  * Initializes and processes events
@@ -12,8 +11,8 @@ import { Client } from '../index.js';
 export default async (client) => {
     const Table = new Ascii("Events Load");
     
-    for(let file of (await GlobSync(`./Events/**/*.js`))){ 
-        const event = (await import(`.${file}`)).default;
+    for(let file of (await glob(`./Events/**/*.js`))){ 
+        const event = (await import(`../${file}`)).default;
         const L = file.split("/").slice(-2).join('/');
         if (!event){
             await Table.addRow("MANQUANT",`[⛔] Invalid Event format: "${L}"`);

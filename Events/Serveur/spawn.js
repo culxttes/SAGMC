@@ -3,12 +3,12 @@ import pkg from 'prismarine-chat';
 import { statSync } from "fs";
 import { datestring } from "../../Utils/datestring.js";
 import { Client } from '../../index.js';
-import { ScoreBoard } from 'mineflayer';
+import * as mineflayer from 'mineflayer';
 
 /**
  * Returns true if the bot is at the server hub, false otherwise.
  * @param {Client} client 
- * @param {ScoreBoard} scoreboard 
+ * @param {mineflayer.ScoreBoard} scoreboard 
  * @returns 
  */
 function is_in_hub(client, scoreboard) {

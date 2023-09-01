@@ -1,5 +1,5 @@
 "use strict";
-import { GlobSync } from 'glob';
+import { glob } from 'glob';
 import Ascii from "ascii-table";
 import { statSync } from 'fs';
 import { Client } from '../index.js';
@@ -11,8 +11,8 @@ import { Client } from '../index.js';
 export default async (client) => {
     client.commands = new Map();
     const Table = new Ascii("Commands Load");
-    for(let file of (await GlobSync(`./Commands/**/*.js`))){ 
-        const command = (await import(`.${file}`)).default;
+    for(let file of (await glob(`./Commands/**/*.js`))){ 
+        const command = (await import(`../${file}`)).default;
 
         if(!command.name){
             Table.addRow(file.split("/").slice(-1), "[❗️] Erreur", "Missing name");
@@ -45,7 +45,7 @@ export default async (client) => {
         if(!cmd) return;
         const stats = statSync(cmd);
         try {
-            await (await import(`.${cmd}#${stats.mtimeMs}`)).default.execute(args, username, message, client)
+            await (await import(`../${cmd}#${stats.mtimeMs}`)).default.execute(args, username, message, client)
         }catch(err){
             console.log(err)
         }  

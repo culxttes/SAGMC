@@ -1,5 +1,5 @@
 "use strict";
-import { ChatMessage } from 'prismarine-chat';
+import * as pc from 'prismarine-chat';
 
 /**
  * Returns true if the object passed in parameter is iterable, false otherwise.
@@ -14,7 +14,7 @@ function isIterable(obj) {
 /**
  * Returns an array containing first an array of clickEvents and second an array 
  * of hoverEvents
- * @param {ChatMessage} jsonMsg 
+ * @param {pc.ChatMessage} jsonMsg 
  * @returns {Array}
  */
 export function getChatEvents(jsonMsg) {

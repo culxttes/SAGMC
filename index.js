@@ -23,11 +23,11 @@ export class Client{
             password: config.password,
             auth: config.auth,
             checkTimeoutInterval: 100000,
-            defaultChatPatterns: false
+            defaultChatPatterns: false,
+            brand: "Imagine Perrier tu regardes le brand du client"
         });
         this.bot.loadPlugin(pathfinder);
         this.commands = new Map();
-        this.db = mysql;
     }
 
     /**
@@ -36,7 +36,7 @@ export class Client{
     async execute (){
         (await import("./Handlers/Commands.js")).default(this);
         (await import("./Handlers/Events.js")).default(this);
+        this.db = await mysql.createConnection(config.database);
     }
 };
-const connection = await mysql.createConnection(config.database);
-new Client(connection).execute();
+new Client().execute();

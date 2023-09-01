@@ -11,9 +11,9 @@
   "license": "SEE LICENCE IN \"LICENCE\"",
   "dependencies": {
     "ascii-table": "^0.0.9",
-    "glob": "^8.0.3",
+    "glob": "^10.3.3",
     "minecraft-data": "^3.9.1",
-    "mineflayer": "^4.5.0",
+    "mineflayer": "^4.13.0",
     "mineflayer-pathfinder": "^2.2.0",
     "mysql2": "^3.6.0"
   },

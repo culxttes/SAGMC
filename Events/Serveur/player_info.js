@@ -22,7 +22,6 @@ export default{
             const uuid = packet.data[0].UUID;
             client.db.query("CALL CA(?, ?);", [uuid, 0], (err, results, fields) => console.log(err))
         }
-        client.bot._client.on("player_info", )
     }
 
 }

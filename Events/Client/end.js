@@ -16,7 +16,7 @@ export default{
         console.log("END: ", reason)
         await new Promise(resolve => setTimeout(resolve, 10000));
         client.bot.removeAllListeners();
-        client.rl.close();
-        new Client(client.db).execute();
+        client.db.close();
+        new Client().execute();
     }
 }

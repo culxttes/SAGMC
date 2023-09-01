@@ -2,8 +2,7 @@
 import { datestring } from "../../Utils/datestring.js";
 import { Client } from "../../index.js"
 import { getChatEvents } from "../../Utils/getChatEvents.js";
-import { ChatMessage } from 'prismarine-chat';
-import { Client } from "../../index.js";
+import * as pc from 'prismarine-chat';
 
 export default {
     name: "message",
@@ -24,7 +23,7 @@ export default {
      * verified -> null if non signed, true if signed and correct, false if 
      * signed and incorrect
      * @param {Client} client
-     * @param {ChatMessage} jsonMsg
+     * @param {pc.ChatMessage} jsonMsg
      * @param {string} position
      * @param {string | null} sender
      * @param {boolean | null} verified 
